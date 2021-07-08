@@ -1,20 +1,17 @@
 @TestOn('chrome')
 
 import 'dart:html';
+
 import 'package:camera_platform_interface/camera_platform_interface.dart';
 import 'package:camera_web/camera_web.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockWindow extends Mock implements Window {}
-
-class MockNavigator extends Mock implements Navigator {}
-
-class MockMediaDevices extends Mock implements MediaDevices {}
+import '../helpers/helpers.dart';
 
 void main() {
-  group('Camera', () {
+  group('CameraPlugin', () {
     const cameraId = 0;
 
     late Window window;
