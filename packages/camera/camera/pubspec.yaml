@@ -16,8 +16,6 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  camera_platform_interface:
-    path: ../camera_platform_interface
   camera_web:
     path: ../camera_web
 
