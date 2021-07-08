@@ -69,12 +69,15 @@ class CameraPlugin extends CameraPlatform {
   @override
   Stream<DeviceOrientationChangedEvent> onDeviceOrientationChanged() {
     throw UnimplementedError(
-        'onDeviceOrientationChanged() is not implemented.');
+      'onDeviceOrientationChanged() is not implemented.',
+    );
   }
 
   @override
   Future<void> lockCaptureOrientation(
-      int cameraId, DeviceOrientation orientation) {
+    int cameraId,
+    DeviceOrientation orientation,
+  ) {
     throw UnimplementedError('lockCaptureOrientation() is not implemented.');
   }
 
