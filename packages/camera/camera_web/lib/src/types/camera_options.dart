@@ -1,5 +1,13 @@
 import 'package:flutter/foundation.dart';
 
+/// Options used to create a camera with the given
+/// [audio] and [video] constraints.
+///
+/// These options represent web `MediaStreamConstraints`
+/// and can be used to request the browser for media streams
+/// with tracks the requested types of media.
+///
+/// https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
 class CameraOptions {
   const CameraOptions({
     AudioConstraints? audio,
@@ -19,11 +27,31 @@ class CameraOptions {
   }
 }
 
-enum CameraType { rear, user }
-enum Constraint { exact, ideal }
+enum CameraType {
+  /// The camera is facing away from the user, viewing their environment.
+  /// This includes the back camera on a smartphone.
+  environment,
 
+  /// The video source is facing toward the user.
+  /// This includes the front camera on a smartphone.
+  user
+}
+
+/// Specifies a constraint of a property value.
+enum Constraint {
+  /// Used to specify a value that the property must have
+  /// to be considered acceptable.
+  exact,
+
+  /// Used to specify a value the property would ideally have,
+  /// but which can be considered optional.
+  ideal
+}
+
+/// Indicates the direction in which the desired camera should be pointing.
 class FacingMode {
   const FacingMode({this.constraint, this.type});
+
   final Constraint? constraint;
   final CameraType? type;
 
@@ -37,13 +65,17 @@ class FacingMode {
   }
 }
 
+/// Indicates whether the audio track is requested.
 class AudioConstraints {
   const AudioConstraints({this.enabled = false});
+
   final bool enabled;
 
   Object toJson() => enabled;
 }
 
+/// Indicates whether the video track is requested.
+/// Includes optional constraints that the video track must have.
 class VideoConstraints {
   const VideoConstraints({
     this.enabled = true,
@@ -72,6 +104,12 @@ class VideoConstraints {
   }
 }
 
+/// The size of the requested video track used in
+/// [VideoConstraints.width] and [VideoConstraints.height].
+///
+/// The obtained camera will have a size between [minimum] and [maximum]
+/// with ideally a size of [ideal]. The size is determined by
+/// the capabilities of the hardware and the other specified constraints.
 class VideoSize {
   const VideoSize({this.minimum, this.ideal, this.maximum});
   final int? minimum;
