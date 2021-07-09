@@ -12,7 +12,7 @@ void main() {
         audio: AudioConstraints(enabled: true),
         video: VideoConstraints(
           facingMode: FacingMode(
-            constrain: Constrain.exact,
+            constraint: Constraint.exact,
             type: CameraType.user,
           ),
         ),
@@ -31,10 +31,10 @@ void main() {
   group('FacingMode', () {
     test(
         'serializes correctly '
-        'when constrain and type are given', () {
+        'when constraint and type are given', () {
       expect(
         FacingMode(
-          constrain: Constrain.ideal,
+          constraint: Constraint.ideal,
           type: CameraType.rear,
         ).toJson(),
         equals({'ideal': 'rear'}),
@@ -78,7 +78,7 @@ void main() {
       expect(
         await VideoConstraints(
           enabled: false,
-          facingMode: FacingMode(constrain: Constrain.exact),
+          facingMode: FacingMode(constraint: Constraint.exact),
           width: VideoSize(ideal: 100, maximum: 100),
           height: VideoSize(ideal: 50, maximum: 50),
           deviceId: 'deviceId',
@@ -92,7 +92,7 @@ void main() {
         'when enabled is true', () async {
       final videoConstraints = VideoConstraints(
         facingMode: FacingMode(
-          constrain: Constrain.exact,
+          constraint: Constraint.exact,
           type: CameraType.user,
         ),
         width: VideoSize(ideal: 100, maximum: 100),
