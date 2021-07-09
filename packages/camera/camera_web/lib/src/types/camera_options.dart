@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 ///
 /// These options represent web `MediaStreamConstraints`
 /// and can be used to request the browser for media streams
-/// with tracks the requested types of media.
+/// with the requested types of media.
 ///
 /// https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
 class CameraOptions {
