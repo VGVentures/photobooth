@@ -35,9 +35,9 @@ void main() {
       expect(
         FacingMode(
           constraint: Constraint.ideal,
-          type: CameraType.rear,
+          type: CameraType.environment,
         ).toJson(),
-        equals({'ideal': 'rear'}),
+        equals({'ideal': 'environment'}),
       );
     });
 
