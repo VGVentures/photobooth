@@ -20,19 +20,19 @@ class CameraOptions {
 }
 
 enum CameraType { rear, user }
-enum Constrain { exact, ideal }
+enum Constraint { exact, ideal }
 
 class FacingMode {
-  const FacingMode({this.constrain, this.type});
-  final Constrain? constrain;
+  const FacingMode({this.constraint, this.type});
+  final Constraint? constraint;
   final CameraType? type;
 
   Object? toJson() {
-    if (constrain == null) {
+    if (constraint == null) {
       return type != null ? describeEnum(type!) : null;
     }
     return {
-      describeEnum(constrain!): describeEnum(type!),
+      describeEnum(constraint!): describeEnum(type!),
     };
   }
 }
