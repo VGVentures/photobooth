@@ -29,7 +29,9 @@ class Camera {
       );
     }
 
-    videoElement = html.VideoElement()..applyDefaultStyles();
+    videoElement = html.VideoElement();
+    _applyDefaultVideoStyles(videoElement);
+
     divElement = html.DivElement()
       ..style.setProperty('object-fit', 'cover')
       ..append(videoElement);
@@ -135,18 +137,14 @@ class Camera {
       ..srcObject = null
       ..load();
   }
-}
 
-extension on html.VideoElement {
-  void applyDefaultStyles() {
-    style
-      ..removeProperty('transform-origin')
-      ..setProperty('pointer-events', 'none')
-      ..setProperty('width', '100%')
-      ..setProperty('height', '100%')
-      ..setProperty('object-fit', 'cover')
-      ..setProperty('transform', 'scaleX(-1)')
-      ..setProperty('-webkit-transform', 'scaleX(-1)')
-      ..setProperty('-moz-transform', 'scaleX(-1)');
+  void _applyDefaultVideoStyles(html.VideoElement element) {
+    element.style
+      ..transformOrigin = 'center'
+      ..pointerEvents = 'none'
+      ..width = '100%'
+      ..height = '100%'
+      ..objectFit = 'cover'
+      ..transform = 'scaleX(-1)';
   }
 }
