@@ -7,6 +7,20 @@ import 'package:camera_web/src/types/camera_options.dart';
 
 String _getViewType(int cameraId) => 'plugins.flutter.io/camera_$cameraId';
 
+/// A camera initialized from the media devices in the current [window].
+/// The obtained camera is constrained by the [options] which are used
+/// when querying the media input in [_getMediaStream].
+///
+/// The camera stream is displayed in the [videoElement] wrapped in the
+/// [divElement] to avoid overriding the custom styles applied to
+/// the video element in [_applyDefaultVideoStyles].
+/// See https://github.com/flutter/flutter/issues/79519.
+///
+/// The camera can be played/stopped by calling [play]/[stop]
+/// or may capture a picture by [takePicture].
+///
+/// The [textureId] is used to register a camera view factory with the id
+/// returned by [_getViewType].
 class Camera {
   Camera({
     required this.textureId,
