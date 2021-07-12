@@ -11,7 +11,7 @@ void main() {
       final cameraOptions = CameraOptions(
         audio: AudioConstraints(enabled: true),
         video: VideoConstraints(
-          facingMode: FacingMode(
+          facingMode: FacingModeConstraint(
             constraint: Constraint.exact,
             type: CameraType.user,
           ),
@@ -28,12 +28,12 @@ void main() {
     });
   });
 
-  group('FacingMode', () {
+  group('FacingModeConstraint', () {
     test(
         'serializes correctly '
         'when constraint and type are given', () {
       expect(
-        FacingMode(
+        FacingModeConstraint(
           constraint: Constraint.ideal,
           type: CameraType.environment,
         ).toJson(),
@@ -45,7 +45,7 @@ void main() {
         'serializes correctly '
         'when only type is given', () {
       expect(
-        FacingMode(
+        FacingModeConstraint(
           type: CameraType.user,
         ).toJson(),
         equals('user'),
@@ -56,7 +56,7 @@ void main() {
         'serializes to null '
         'when no property is given', () {
       expect(
-        FacingMode().toJson(),
+        FacingModeConstraint().toJson(),
         equals(null),
       );
     });
@@ -78,9 +78,9 @@ void main() {
       expect(
         VideoConstraints(
           enabled: false,
-          facingMode: FacingMode(constraint: Constraint.exact),
-          width: VideoSize(ideal: 100, maximum: 100),
-          height: VideoSize(ideal: 50, maximum: 50),
+          facingMode: FacingModeConstraint(constraint: Constraint.exact),
+          width: VideoSizeConstraint(ideal: 100, maximum: 100),
+          height: VideoSizeConstraint(ideal: 50, maximum: 50),
           deviceId: 'deviceId',
         ).toJson(),
         equals(false),
@@ -91,12 +91,12 @@ void main() {
         'serializes correctly '
         'when enabled is true', () async {
       final videoConstraints = VideoConstraints(
-        facingMode: FacingMode(
+        facingMode: FacingModeConstraint(
           constraint: Constraint.exact,
           type: CameraType.user,
         ),
-        width: VideoSize(ideal: 100, maximum: 100),
-        height: VideoSize(ideal: 50, maximum: 50),
+        width: VideoSizeConstraint(ideal: 100, maximum: 100),
+        height: VideoSizeConstraint(ideal: 50, maximum: 50),
         deviceId: 'deviceId',
       );
 
@@ -111,10 +111,10 @@ void main() {
       );
     });
 
-    group('VideoSize', () {
+    group('VideoSizeConstraint', () {
       test('serializes correctly', () {
         expect(
-          VideoSize(
+          VideoSizeConstraint(
             ideal: 400,
             minimum: 200,
             maximum: 400,

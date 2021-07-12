@@ -48,8 +48,8 @@ enum Constraint {
 }
 
 /// Indicates the direction in which the desired camera should be pointing.
-class FacingMode {
-  const FacingMode({this.constraint, this.type});
+class FacingModeConstraint {
+  const FacingModeConstraint({this.constraint, this.type});
 
   final Constraint? constraint;
   final CameraType? type;
@@ -85,9 +85,9 @@ class VideoConstraints {
   });
 
   final bool enabled;
-  final FacingMode? facingMode;
-  final VideoSize? width;
-  final VideoSize? height;
+  final FacingModeConstraint? facingMode;
+  final VideoSizeConstraint? width;
+  final VideoSizeConstraint? height;
   final String? deviceId;
 
   Object toJson() {
@@ -109,8 +109,8 @@ class VideoConstraints {
 /// The obtained camera will have a size between [minimum] and [maximum]
 /// with ideally a size of [ideal]. The size is determined by
 /// the capabilities of the hardware and the other specified constraints.
-class VideoSize {
-  const VideoSize({this.minimum, this.ideal, this.maximum});
+class VideoSizeConstraint {
+  const VideoSizeConstraint({this.minimum, this.ideal, this.maximum});
   final int? minimum;
   final int? ideal;
   final int? maximum;
