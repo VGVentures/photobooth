@@ -74,8 +74,8 @@ class FacingModeConstraint {
 
   Object? toJson() {
     return {
-      if (ideal != null) 'ideal': ideal,
-      if (exact != null) 'exact': exact,
+      if (ideal != null) 'ideal': ideal.toString(),
+      if (exact != null) 'exact': exact.toString(),
     };
   }
 }
