@@ -26,14 +26,25 @@ class CameraOptions {
   }
 }
 
-enum CameraType {
+/// The camera type used in [FacingModeConstraint].
+///
+/// Specifies whether the requested camera should be facing away
+/// or toward the user.
+class CameraType {
+  const CameraType._(this._type);
+
+  final String _type;
+
+  @override
+  String toString() => _type;
+
   /// The camera is facing away from the user, viewing their environment.
   /// This includes the back camera on a smartphone.
-  environment,
+  static const CameraType environment = CameraType._('environment');
 
-  /// The video source is facing toward the user.
+  /// The camera is facing toward the user.
   /// This includes the front camera on a smartphone.
-  user
+  static const CameraType user = CameraType._('user');
 }
 
 /// Specifies a constraint of a property value.
