@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
-
 /// Options used to create a camera with the given
-/// [audio] and [video] constraints.
+/// [audio] and [video] media constraints.
 ///
 /// These options represent web `MediaStreamConstraints`
 /// and can be used to request the browser for media streams
@@ -9,6 +7,8 @@ import 'package:flutter/foundation.dart';
 ///
 /// https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
 class CameraOptions {
+  /// Creates a new instance of [CameraOptions]
+  /// with the given [audio] and [video] constraints.
   const CameraOptions({
     AudioConstraints? audio,
     VideoConstraints? video,
@@ -47,36 +47,46 @@ class CameraType {
   static const CameraType user = CameraType._('user');
 }
 
-/// Specifies a constraint of a property value.
-enum Constraint {
-  /// Used to specify a value that the property must have
-  /// to be considered acceptable.
-  exact,
-
-  /// Used to specify a value the property would ideally have,
-  /// but which can be considered optional.
-  ideal
-}
-
 /// Indicates the direction in which the desired camera should be pointing.
 class FacingModeConstraint {
-  const FacingModeConstraint({this.constraint, this.type});
+  /// Creates a new instance of [FacingModeConstraint]
+  /// with the given [ideal] and [exact] constraints.
+  const FacingModeConstraint._({this.ideal, this.exact});
 
-  final Constraint? constraint;
-  final CameraType? type;
+  /// Creates a new instance of [FacingModeConstraint]
+  /// with [ideal] constraint set to [type].
+  ///
+  /// If this constraint is used, then the camera would ideally have
+  /// the desired facing [type] but it may be considered optional.
+  factory FacingModeConstraint(CameraType type) =>
+      FacingModeConstraint._(ideal: type);
+
+  /// Creates a new instance of [FacingModeConstraint]
+  /// with [exact] constraint set to [type].
+  ///
+  /// If this constraint is used, then the camera must have
+  /// the desired facing [type] to be considered acceptable.
+  factory FacingModeConstraint.exact(CameraType type) =>
+      FacingModeConstraint._(exact: type);
+
+  final CameraType? ideal;
+  final CameraType? exact;
 
   Object? toJson() {
-    if (constraint == null) {
-      return type != null ? describeEnum(type!) : null;
-    }
     return {
-      describeEnum(constraint!): describeEnum(type!),
+      if (ideal != null) 'ideal': ideal,
+      if (exact != null) 'exact': exact,
     };
   }
 }
 
 /// Indicates whether the audio track is requested.
+///
+/// By default, the audio track is not requested.
 class AudioConstraints {
+  /// Creates a new instance of [AudioConstraints]
+  /// with the given [enabled] constraint
+  /// indicating whether the audio track is requested.
   const AudioConstraints({this.enabled = false});
 
   final bool enabled;
@@ -85,8 +95,12 @@ class AudioConstraints {
 }
 
 /// Indicates whether the video track is requested.
-/// Includes optional constraints that the video track must have.
+///
+/// Includes optional constraints that the video track must have
+/// to be considered acceptable.
 class VideoConstraints {
+  /// Creates a new instance of [VideoConstraints]
+  /// with the given constraints.
   const VideoConstraints({
     this.enabled = true,
     this.facingMode,
@@ -121,7 +135,10 @@ class VideoConstraints {
 /// with ideally a size of [ideal]. The size is determined by
 /// the capabilities of the hardware and the other specified constraints.
 class VideoSizeConstraint {
+  /// Creates a new instance of [VideoSizeConstraint] with the given
+  /// [minimum], [ideal] and [maximum] constraints.
   const VideoSizeConstraint({this.minimum, this.ideal, this.maximum});
+
   final int? minimum;
   final int? ideal;
   final int? maximum;
