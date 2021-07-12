@@ -18,11 +18,10 @@ class CameraOptions {
   final AudioConstraints audio;
   final VideoConstraints video;
 
-  Future<Map<String, dynamic>> toJson() async {
-    final videoConstraints = await video.toJson();
+  Map<String, dynamic> toJson() {
     return {
       'audio': audio.toJson(),
-      'video': videoConstraints,
+      'video': video.toJson(),
     };
   }
 }
@@ -91,7 +90,7 @@ class VideoConstraints {
   final VideoSize? height;
   final String? deviceId;
 
-  Future<Object> toJson() async {
+  Object toJson() {
     if (!enabled) return false;
     final json = <String, dynamic>{};
 

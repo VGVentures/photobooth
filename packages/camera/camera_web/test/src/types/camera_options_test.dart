@@ -19,10 +19,10 @@ void main() {
       );
 
       expect(
-        await cameraOptions.toJson(),
+        cameraOptions.toJson(),
         equals({
           'audio': cameraOptions.audio.toJson(),
-          'video': await cameraOptions.video.toJson(),
+          'video': cameraOptions.video.toJson(),
         }),
       );
     });
@@ -76,7 +76,7 @@ void main() {
         'serializes correctly '
         'when enabled is false', () async {
       expect(
-        await VideoConstraints(
+        VideoConstraints(
           enabled: false,
           facingMode: FacingMode(constraint: Constraint.exact),
           width: VideoSize(ideal: 100, maximum: 100),
@@ -101,7 +101,7 @@ void main() {
       );
 
       expect(
-        await videoConstraints.toJson(),
+        videoConstraints.toJson(),
         equals({
           'facingMode': videoConstraints.facingMode!.toJson(),
           'width': videoConstraints.width!.toJson(),
