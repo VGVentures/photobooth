@@ -11,54 +11,67 @@ void main() {
       final cameraOptions = CameraOptions(
         audio: AudioConstraints(enabled: true),
         video: VideoConstraints(
-          facingMode: FacingMode(
-            constraint: Constraint.exact,
-            type: CameraType.user,
-          ),
+          facingMode: FacingModeConstraint.exact(CameraType.user),
         ),
       );
 
       expect(
-        await cameraOptions.toJson(),
+        cameraOptions.toJson(),
         equals({
           'audio': cameraOptions.audio.toJson(),
-          'video': await cameraOptions.video.toJson(),
+          'video': cameraOptions.video.toJson(),
         }),
       );
     });
   });
 
-  group('FacingMode', () {
-    test(
-        'serializes correctly '
-        'when constraint and type are given', () {
-      expect(
-        FacingMode(
-          constraint: Constraint.ideal,
-          type: CameraType.environment,
-        ).toJson(),
-        equals({'ideal': 'environment'}),
-      );
+  group('FacingModeConstraint', () {
+    group('ideal', () {
+      test(
+          'serializes correctly '
+          'for environment camera type', () {
+        expect(
+          FacingModeConstraint(
+            CameraType.environment,
+          ).toJson(),
+          equals({'ideal': 'environment'}),
+        );
+      });
+
+      test(
+          'serializes correctly '
+          'for user camera type', () {
+        expect(
+          FacingModeConstraint(
+            CameraType.user,
+          ).toJson(),
+          equals({'ideal': 'user'}),
+        );
+      });
     });
 
-    test(
-        'serializes correctly '
-        'when only type is given', () {
-      expect(
-        FacingMode(
-          type: CameraType.user,
-        ).toJson(),
-        equals('user'),
-      );
-    });
+    group('exact', () {
+      test(
+          'serializes correctly '
+          'for environment camera type', () {
+        expect(
+          FacingModeConstraint.exact(
+            CameraType.environment,
+          ).toJson(),
+          equals({'exact': 'environment'}),
+        );
+      });
 
-    test(
-        'serializes to null '
-        'when no property is given', () {
-      expect(
-        FacingMode().toJson(),
-        equals(null),
-      );
+      test(
+          'serializes correctly '
+          'for user camera type', () {
+        expect(
+          FacingModeConstraint.exact(
+            CameraType.user,
+          ).toJson(),
+          equals({'exact': 'user'}),
+        );
+      });
     });
   });
 
@@ -76,11 +89,11 @@ void main() {
         'serializes correctly '
         'when enabled is false', () async {
       expect(
-        await VideoConstraints(
+        VideoConstraints(
           enabled: false,
-          facingMode: FacingMode(constraint: Constraint.exact),
-          width: VideoSize(ideal: 100, maximum: 100),
-          height: VideoSize(ideal: 50, maximum: 50),
+          facingMode: FacingModeConstraint(CameraType.user),
+          width: VideoSizeConstraint(ideal: 100, maximum: 100),
+          height: VideoSizeConstraint(ideal: 50, maximum: 50),
           deviceId: 'deviceId',
         ).toJson(),
         equals(false),
@@ -91,17 +104,14 @@ void main() {
         'serializes correctly '
         'when enabled is true', () async {
       final videoConstraints = VideoConstraints(
-        facingMode: FacingMode(
-          constraint: Constraint.exact,
-          type: CameraType.user,
-        ),
-        width: VideoSize(ideal: 100, maximum: 100),
-        height: VideoSize(ideal: 50, maximum: 50),
+        facingMode: FacingModeConstraint.exact(CameraType.user),
+        width: VideoSizeConstraint(ideal: 100, maximum: 100),
+        height: VideoSizeConstraint(ideal: 50, maximum: 50),
         deviceId: 'deviceId',
       );
 
       expect(
-        await videoConstraints.toJson(),
+        videoConstraints.toJson(),
         equals({
           'facingMode': videoConstraints.facingMode!.toJson(),
           'width': videoConstraints.width!.toJson(),
@@ -111,10 +121,10 @@ void main() {
       );
     });
 
-    group('VideoSize', () {
+    group('VideoSizeConstraint ', () {
       test('serializes correctly', () {
         expect(
-          VideoSize(
+          VideoSizeConstraint(
             ideal: 400,
             minimum: 200,
             maximum: 400,
