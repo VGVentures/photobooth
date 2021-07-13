@@ -85,24 +85,7 @@ void main() {
   });
 
   group('VideoConstraints', () {
-    test(
-        'serializes correctly '
-        'when enabled is false', () async {
-      expect(
-        VideoConstraints(
-          enabled: false,
-          facingMode: FacingModeConstraint(CameraType.user),
-          width: VideoSizeConstraint(ideal: 100, maximum: 100),
-          height: VideoSizeConstraint(ideal: 50, maximum: 50),
-          deviceId: 'deviceId',
-        ).toJson(),
-        equals(false),
-      );
-    });
-
-    test(
-        'serializes correctly '
-        'when enabled is true', () async {
+    test('serializes correctly', () async {
       final videoConstraints = VideoConstraints(
         facingMode: FacingModeConstraint.exact(CameraType.user),
         width: VideoSizeConstraint(ideal: 100, maximum: 100),

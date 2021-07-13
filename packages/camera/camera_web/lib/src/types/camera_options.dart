@@ -94,29 +94,24 @@ class AudioConstraints {
   Object toJson() => enabled;
 }
 
-/// Indicates whether the video track is requested.
-///
-/// Includes optional constraints that the video track must have
+/// Defines constraints that the video track must have
 /// to be considered acceptable.
 class VideoConstraints {
   /// Creates a new instance of [VideoConstraints]
   /// with the given constraints.
   const VideoConstraints({
-    this.enabled = true,
     this.facingMode,
     this.width,
     this.height,
     this.deviceId,
   });
 
-  final bool enabled;
   final FacingModeConstraint? facingMode;
   final VideoSizeConstraint? width;
   final VideoSizeConstraint? height;
   final String? deviceId;
 
   Object toJson() {
-    if (!enabled) return false;
     final json = <String, dynamic>{};
 
     if (width != null) json['width'] = width!.toJson();
@@ -149,6 +144,7 @@ class VideoSizeConstraint {
     if (ideal != null) json['ideal'] = ideal;
     if (minimum != null) json['min'] = minimum;
     if (maximum != null) json['max'] = maximum;
+
     return json;
   }
 }
