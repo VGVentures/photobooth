@@ -1,8 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-const _cameraOptions = CameraOptions(audio: AudioConstraints(enabled: false));
-
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
@@ -30,8 +28,8 @@ class _HomePageState extends State<HomePage> {
     _initializeCameraController();
   }
 
-  void _initializeCameraController() async {
-    _controller = CameraController(options: _cameraOptions);
+  Future<void> _initializeCameraController() async {
+    _controller = CameraController();
     await _controller.initialize();
     await _controller.play();
   }
@@ -46,7 +44,8 @@ class _HomePageState extends State<HomePage> {
     final image = await _controller.takePicture();
     final previewPageRoute = PreviewPage.route(image: image.data);
     await _controller.stop();
-    await Navigator.of(context).push(previewPageRoute);
+    // ignore: use_build_context_synchronously
+    await Navigator.of(context).push<void>(previewPageRoute);
     await _controller.play();
   }
 
@@ -101,7 +100,7 @@ class PreviewPage extends StatelessWidget {
   const PreviewPage({Key? key, required this.image}) : super(key: key);
 
   static Route route({required String image}) {
-    return MaterialPageRoute(builder: (_) => PreviewPage(image: image));
+    return MaterialPageRoute<void>(builder: (_) => PreviewPage(image: image));
   }
 
   final String image;
