@@ -29,7 +29,7 @@ void main() {
         ),
         returnsNormally,
       );
-      verify(
+      verify<dynamic>(
         () => context.callMethod(
           'ga',
           <dynamic>['send', 'event', category, action, label],
