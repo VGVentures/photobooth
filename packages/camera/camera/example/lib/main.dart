@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  void _onSnapPressed() async {
+  Future<void> _onSnapPressed() async {
     final image = await _controller.takePicture();
     final previewPageRoute = PreviewPage.route(image: image.data);
     await _controller.stop();
