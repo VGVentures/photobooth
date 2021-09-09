@@ -151,7 +151,7 @@ void main() {
         when(() => firebaseStorage.ref(any())).thenThrow(() => Exception());
 
         expect(
-          () async => await photosRepository.sharePhoto(
+          () async => photosRepository.sharePhoto(
             fileName: photoName,
             data: photoData,
             shareText: shareText,
@@ -165,7 +165,7 @@ void main() {
           'when reference.putData throws', () async {
         when(() => reference.putData(photoData)).thenThrow(() => Exception());
         expect(
-          () async => await photosRepository.sharePhoto(
+          () async => photosRepository.sharePhoto(
             fileName: photoName,
             data: photoData,
             shareText: shareText,
@@ -182,7 +182,7 @@ void main() {
       const height = 4;
       const layers = [
         CompositeLayer(
-          angle: 0.0,
+          angle: 0,
           assetPath: 'path',
           constraints: Vector2D(1, 2),
           position: Vector2D(3, 4),
@@ -248,7 +248,7 @@ void main() {
           ),
         ).thenThrow(Exception('oops'));
         expect(
-          () async => await photosRepository.composite(
+          () async => photosRepository.composite(
             width: width,
             height: height,
             data: data,
