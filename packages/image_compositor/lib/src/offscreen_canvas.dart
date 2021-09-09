@@ -57,7 +57,9 @@ class OffScreenCanvas {
         final fileReader = html.FileReader();
         fileReader.onLoad.listen((event) {
           completer.complete(js_util.getProperty(
-              js_util.getProperty(event, 'target')!, 'result')!);
+            js_util.getProperty(event, 'target')! as Object,
+            'result',
+          )! as FutureOr<String>);
         });
         fileReader.readAsDataUrl(value);
       });
@@ -69,9 +71,9 @@ class OffScreenCanvas {
 
   /// Returns CanvasRenderContext2D or OffscreenCanvasRenderingContext2D to
   /// paint into.
-  Object? getContext2d() => _context ??= (_offScreenCanvas != null
+  Object? getContext2d() => _context ??= _offScreenCanvas != null
       ? _offScreenCanvas!.getContext('2d')
-      : _canvasElement!.getContext('2d'));
+      : _canvasElement!.getContext('2d');
 
   /// Proxy to `canvas.getContext('2d').save()`.
   void save() {
