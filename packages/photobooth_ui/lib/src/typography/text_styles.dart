@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:photobooth_ui/photobooth_ui.dart';
 
-import 'font_weights.dart';
+import 'package:photobooth_ui/src/typography/font_weights.dart';
 
 /// Photobooth Text Style Definitions
 class PhotoboothTextStyle {

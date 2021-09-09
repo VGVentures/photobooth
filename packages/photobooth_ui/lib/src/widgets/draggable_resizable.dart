@@ -141,9 +141,9 @@ class _DraggableResizableState extends State<DraggableResizable> {
 
         void onDragTopLeft(Offset details) {
           final mid = (details.dx + details.dy) / 2;
-          final newHeight = math.max((size.height - (2 * mid)), 0.0);
-          final newWidth = math.max(size.width - (2 * mid), 0.0);
-          final updatedSize = Size(newWidth, newHeight);
+          final newWidth = math.max(size.width - (2 * mid), 0);
+          final newHeight = math.max(size.height - (2 * mid), 0);
+          final updatedSize = Size(newWidth.toDouble(), newHeight.toDouble());
 
           if (!widget.constraints.isSatisfiedBy(updatedSize)) return;
 
@@ -159,9 +159,9 @@ class _DraggableResizableState extends State<DraggableResizable> {
 
         void onDragTopRight(Offset details) {
           final mid = (details.dx + (details.dy * -1)) / 2;
-          final newHeight = math.max(size.height + (2 * mid), 0.0);
-          final newWidth = math.max(size.width + (2 * mid), 0.0);
-          final updatedSize = Size(newWidth, newHeight);
+          final newWidth = math.max(size.width + (2 * mid), 0);
+          final newHeight = math.max(size.height + (2 * mid), 0);
+          final updatedSize = Size(newWidth.toDouble(), newHeight.toDouble());
 
           if (!widget.constraints.isSatisfiedBy(updatedSize)) return;
 
@@ -177,9 +177,9 @@ class _DraggableResizableState extends State<DraggableResizable> {
 
         void onDragBottomLeft(Offset details) {
           final mid = ((details.dx * -1) + details.dy) / 2;
-          final newHeight = math.max(size.height + (2 * mid), 0.0);
-          final newWidth = math.max(size.width + (2 * mid), 0.0);
-          final updatedSize = Size(newWidth, newHeight);
+          final newWidth = math.max(size.width + (2 * mid), 0);
+          final newHeight = math.max(size.height + (2 * mid), 0);
+          final updatedSize = Size(newWidth.toDouble(), newHeight.toDouble());
 
           if (!widget.constraints.isSatisfiedBy(updatedSize)) return;
 
@@ -195,9 +195,9 @@ class _DraggableResizableState extends State<DraggableResizable> {
 
         void onDragBottomRight(Offset details) {
           final mid = (details.dx + details.dy) / 2;
-          final newHeight = math.max(size.height + (2 * mid), 0.0);
-          final newWidth = math.max(size.width + (2 * mid), 0.0);
-          final updatedSize = Size(newWidth, newHeight);
+          final newWidth = math.max(size.width + (2 * mid), 0);
+          final newHeight = math.max(size.height + (2 * mid), 0);
+          final updatedSize = Size(newWidth.toDouble(), newHeight.toDouble());
 
           if (!widget.constraints.isSatisfiedBy(updatedSize)) return;
 
@@ -477,10 +477,10 @@ class _DraggablePoint extends StatefulWidget {
 
 class _DraggablePointState extends State<_DraggablePoint> {
   late Offset initPoint;
-  var baseScaleFactor = 1.0;
-  var scaleFactor = 1.0;
-  var baseAngle = 0.0;
-  var angle = 0.0;
+  double baseScaleFactor = 1;
+  double scaleFactor = 1;
+  double baseAngle = 0;
+  double angle = 0;
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class MockImages extends Mock implements Images {}
 
 class MockImage extends Mock implements ui.Image {}
 
-void main() async {
+Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   final image = await decodeImageFromList(Uint8List.fromList(transparentImage));
   group('AnimatedSprite', () {
@@ -56,8 +56,11 @@ void main() async {
         await tester.pumpWidget(MaterialApp(
           home: Scaffold(
             body: AnimatedSprite(
-              sprites: Sprites(asset: 'test.png', size: Size(1, 1), frames: 1),
-              mode: AnimationMode.loop,
+              sprites: Sprites(
+                asset: 'test.png',
+                frames: 1,
+                size: Size(1, 1),
+              ),
             ),
           ),
         ));
