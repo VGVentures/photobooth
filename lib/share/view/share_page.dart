@@ -13,7 +13,7 @@ class SharePage extends StatelessWidget {
   const SharePage({Key? key}) : super(key: key);
 
   static Route route() {
-    return AppPageRoute(builder: (_) => const SharePage());
+    return AppPageRoute<void>(builder: (_) => const SharePage());
   }
 
   @override
@@ -77,14 +77,16 @@ class _ShareRetakeButton extends StatelessWidget {
         child: AppTooltipButton(
           key: const Key('sharePage_retake_appTooltipButton'),
           onPressed: () async {
-            final confirmed = await showAppModal(
+            final confirmed = await showAppModal<bool>(
               context: context,
               landscapeChild: const _ConfirmationDialogContent(),
               portraitChild: const _ConfirmationBottomSheet(),
             );
-            if (confirmed) {
+            if (confirmed ?? false) {
+              // ignore: use_build_context_synchronously
               context.read<PhotoboothBloc>().add(const PhotoClearAllTapped());
               unawaited(
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pushReplacement(PhotoboothPage.route()),
               );
             }
@@ -115,7 +117,6 @@ class _ConfirmationDialogContent extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 l10n.shareRetakeConfirmationHeading,

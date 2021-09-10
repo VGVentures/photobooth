@@ -36,7 +36,7 @@ void main() {
   group('AnimatedPhotoboothPhoto', () {
     group('portrait', () {
       testWidgets(
-          'displays AnimatedPhotoboothPhotoPortrait'
+          'displays AnimatedPhotoboothPhotoPortrait '
           'when aspect ratio is portrait '
           'and screen size is small', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
@@ -56,7 +56,7 @@ void main() {
       });
 
       testWidgets(
-          'displays AnimatedPhotoboothPhotoPortrait'
+          'displays AnimatedPhotoboothPhotoPortrait '
           'when aspect ratio is portrait '
           'and screen size is large', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
@@ -76,7 +76,7 @@ void main() {
       });
 
       testWidgets(
-          'displays AnimatedPhotoboothPhotoPortrait'
+          'displays AnimatedPhotoboothPhotoPortrait '
           'when aspect ratio is portrait '
           'and screen size is xLarge', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
@@ -141,12 +141,11 @@ void main() {
 
     group('landscape', () {
       testWidgets(
-          'displays AnimatedPhotoboothPhotoLandscape'
+          'displays AnimatedPhotoboothPhotoLandscape '
           'when aspect ratio is landscape '
           'and screen size is small', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(PhotoboothBreakpoints.small, 800));
 
@@ -161,12 +160,11 @@ void main() {
       });
 
       testWidgets(
-          'displays AnimatedPhotoboothPhotoLandscape'
+          'displays AnimatedPhotoboothPhotoLandscape '
           'when aspect ratio is landscape '
           'and screen size is medium', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(PhotoboothBreakpoints.medium, 800));
 
@@ -181,12 +179,11 @@ void main() {
       });
 
       testWidgets(
-          'displays AnimatedPhotoboothPhotoLandscape'
+          'displays AnimatedPhotoboothPhotoLandscape '
           'when aspect ratio is landscape '
           'and screen size is large', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(PhotoboothBreakpoints.large, 800));
 
@@ -201,12 +198,11 @@ void main() {
       });
 
       testWidgets(
-          'displays AnimatedPhotoboothPhotoLandscape'
+          'displays AnimatedPhotoboothPhotoLandscape '
           'when aspect ratio is landscape '
           'and screen size is xLarge', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(
           PhotoboothBreakpoints.large + 100,
@@ -229,7 +225,6 @@ void main() {
           'with isPhotoVisible false', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(PhotoboothBreakpoints.large, 800));
 
@@ -249,7 +244,6 @@ void main() {
           'after 2 seconds', (tester) async {
         when(() => photoboothBloc.state).thenReturn(PhotoboothState(
           image: image,
-          aspectRatio: PhotoboothAspectRatio.landscape,
         ));
         tester.setDisplaySize(const Size(PhotoboothBreakpoints.large, 800));
 

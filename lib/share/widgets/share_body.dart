@@ -42,13 +42,15 @@ class ShareBody extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
-                  isUploadSuccess
-                      ? const ShareSuccessHeading()
-                      : const ShareHeading(),
+                  if (isUploadSuccess)
+                    const ShareSuccessHeading()
+                  else
+                    const ShareHeading(),
                   const SizedBox(height: 20),
-                  isUploadSuccess
-                      ? const ShareSuccessSubheading()
-                      : const ShareSubheading(),
+                  if (isUploadSuccess)
+                    const ShareSuccessSubheading()
+                  else
+                    const ShareSubheading(),
                   const SizedBox(height: 30),
                   if (isUploadSuccess)
                     Padding(

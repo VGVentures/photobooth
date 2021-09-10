@@ -55,13 +55,17 @@ void main() {
     CameraPlatform.instance = cameraPlatform;
     when(() => cameraImage.width).thenReturn(4);
     when(() => cameraImage.height).thenReturn(3);
-    when(() => cameraPlatform.init()).thenAnswer((_) async => {});
+    when(() => cameraPlatform.init())
+        .thenAnswer((_) async => <String, dynamic>{});
     when(
       () => cameraPlatform.create(any()),
     ).thenAnswer((_) async => cameraId);
-    when(() => cameraPlatform.play(any())).thenAnswer((_) async => {});
-    when(() => cameraPlatform.stop(any())).thenAnswer((_) async => {});
-    when(() => cameraPlatform.dispose(any())).thenAnswer((_) async => {});
+    when(() => cameraPlatform.play(any()))
+        .thenAnswer((_) async => <String, dynamic>{});
+    when(() => cameraPlatform.stop(any()))
+        .thenAnswer((_) async => <String, dynamic>{});
+    when(() => cameraPlatform.dispose(any()))
+        .thenAnswer((_) async => <String, dynamic>{});
     when(() => cameraPlatform.takePicture(any()))
         .thenAnswer((_) async => cameraImage);
   });

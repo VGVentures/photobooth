@@ -21,10 +21,7 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
     required this.assets,
     required this.aspectRatio,
     required this.shareText,
-    bool isSharingEnabled = const bool.fromEnvironment(
-      'SHARING_ENABLED',
-      defaultValue: false,
-    ),
+    bool isSharingEnabled = const bool.fromEnvironment('SHARING_ENABLED'),
   })  : _photosRepository = photosRepository,
         _isSharingEnabled = isSharingEnabled,
         super(const ShareState());
@@ -58,7 +55,7 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
     unawaited(
       _composite().then(
         (value) => add(_ShareCompositeSucceeded(bytes: value)),
-        onError: (_) => add(const _ShareCompositeFailed()),
+        onError: (dynamic _) => add(const _ShareCompositeFailed()),
       ),
     );
   }
@@ -95,7 +92,7 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
       unawaited(
         _composite().then(
           (value) => add(_ShareCompositeSucceeded(bytes: value)),
-          onError: (_) => add(const _ShareCompositeFailed()),
+          onError: (dynamic _) => add(const _ShareCompositeFailed()),
         ),
       );
     } else if (state.compositeStatus.isSuccess) {

@@ -16,8 +16,7 @@ class MockUrlLauncher extends Mock
 
 bool findTextAndTap(InlineSpan visitor, String text) {
   if (visitor is TextSpan && visitor.text == text) {
-    (visitor.recognizer as TapGestureRecognizer).onTap?.call();
-
+    (visitor.recognizer as TapGestureRecognizer?)?.onTap?.call();
     return false;
   }
 

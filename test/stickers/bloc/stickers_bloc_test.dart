@@ -37,10 +37,7 @@ void main() {
       blocTest<StickersBloc, StickersState>(
         'emits isDrawerActive: true when isDrawerActive: false',
         build: () => StickersBloc(),
-        seed: () => StickersState(
-          isDrawerActive: false,
-          shouldDisplayPropsReminder: false,
-        ),
+        seed: () => StickersState(shouldDisplayPropsReminder: false),
         act: (bloc) => bloc.add(StickersDrawerToggled()),
         expect: () => [
           StickersState(
@@ -59,20 +56,14 @@ void main() {
         ),
         act: (bloc) => bloc.add(StickersDrawerToggled()),
         expect: () => [
-          StickersState(
-            isDrawerActive: false,
-            shouldDisplayPropsReminder: false,
-          ),
+          StickersState(shouldDisplayPropsReminder: false),
         ],
       );
 
       blocTest<StickersBloc, StickersState>(
         'emits shouldDisplayPropsReminder:false when StickersDrawerToggled',
         build: () => StickersBloc(),
-        seed: () => StickersState(
-          isDrawerActive: false,
-          shouldDisplayPropsReminder: true,
-        ),
+        seed: () => StickersState(),
         act: (bloc) => bloc.add(StickersDrawerToggled()),
         expect: () => [
           StickersState(
