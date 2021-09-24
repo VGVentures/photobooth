@@ -35,6 +35,9 @@ void main() {
 
   group('AnimatedPhotoboothPhoto', () {
     group('portrait', () {
+      const animatedPhotoNoImageKey =
+          Key('animatedPhotoboothPhoto_noImage_sizedBox');
+
       testWidgets(
           'displays AnimatedPhotoboothPhotoPortrait '
           'when aspect ratio is portrait '
@@ -136,6 +139,19 @@ void main() {
         final widget = tester.widget<AnimatedPhotoboothPhotoPortrait>(
             find.byType(AnimatedPhotoboothPhotoPortrait));
         expect(widget.isPhotoVisible, true);
+      });
+
+      testWidgets('renders a SizedBox when image is null', (tester) async {
+        when(() => photoboothBloc.state).thenReturn(PhotoboothState(
+          aspectRatio: PhotoboothAspectRatio.portrait,
+        ));
+        tester.setDisplaySize(const Size(PhotoboothBreakpoints.small, 800));
+
+        await tester.pumpApp(
+          AnimatedPhotoboothPhoto(image: null),
+          photoboothBloc: photoboothBloc,
+        );
+        expect(find.byKey(animatedPhotoNoImageKey), findsOneWidget);
       });
     });
 

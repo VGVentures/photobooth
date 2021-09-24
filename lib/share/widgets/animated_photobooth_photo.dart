@@ -257,7 +257,9 @@ class _AnimatedPhotoboothPhoto extends StatelessWidget {
               ),
             )
           else
-            const SizedBox(),
+            const SizedBox(
+              key: Key('animatedPhotoboothPhoto_noImage_sizedBox'),
+            ),
         ],
       ),
     );
